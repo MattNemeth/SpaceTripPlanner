@@ -5,7 +5,7 @@ import csv
 import math
 
 MAXIMUM_DISTANCE = 1 # The maximum number of light years a spaceship can travel before needing a refuel
-DEBUG = False # This will print more verbose. IT WILL NOT OUTPUT VALID CUDA CODE WHEN THIS IS TRUE. USE ONLY WHEN DEBUGGING
+DEBUG = True # This will print more verbose. IT WILL NOT OUTPUT VALID CUDA CODE WHEN THIS IS TRUE. USE ONLY WHEN DEBUGGING
 
 # Get the X, Y, Z cordinates of a galaxy
 def getCord(gal):
@@ -40,7 +40,7 @@ def getStartCount(edges, start):
 
 # Read in galaxy data
 galaxies = []
-with open('GalaxiesWithDistances.csv', 'r') as file:
+with open('GalaxiesWithDistancesAndNumbers.csv', 'r') as file:
     reader = csv.reader(file)
     first = True
     for row in reader:
@@ -48,6 +48,7 @@ with open('GalaxiesWithDistances.csv', 'r') as file:
             first = False
             continue
         galaxies.append({'Name': row[0], 'RA': row[1], "DEC": row[2], "LY": row[3]})
+
 
 # Calculate edges
 edges = []
@@ -85,3 +86,6 @@ if DEBUG:
 for i in range(len(edges)):
     edgeS = "edges[" + str(i) + "] = " + str(edges[i]['end']) + ";"
     print (edgeS)
+
+for edge in edges:
+    print(edge)
