@@ -66,7 +66,6 @@ if DEBUG:
 
 # Print graph in CUDA code
 print ("Node node[", len(galaxies), "];")
-print ("int edges[", len(edges), "];")
 
 if DEBUG:
     print ("********** \n START AND LENGTH CU OUTPUT \n******* \n ")
@@ -81,7 +80,21 @@ for i in range(len(edges)):
         print (lengthS)
 
 if DEBUG:
+    print ("********** \n Galaxy names \n******* \n ")
+
+for i in range(len(galaxies)):
+    nameS = "node[" + str(i) + "].name = '" + galaxies[i]['Name'].replace("'", "") + "';"
+    print (nameS)
+    id0 = str( (int)((i - (i%10))/10))
+    id1 = str(i % 10)
+    idS = "node[" + str(i) + "].id[0] = '" + id0 + "'; node[" + str(i) + "].id[1] = '" + id1 + "';"
+    print (idS)
+
+
+if DEBUG:
     print ("********** \n EDGES CU OUTPUT \n******* \n ")
+
+print ("int edges[", len(edges), "];")
 
 for i in range(len(edges)):
     edgeS = "edges[" + str(i) + "] = " + str(edges[i]['end']) + ";"
